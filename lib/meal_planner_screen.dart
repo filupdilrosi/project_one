@@ -1,52 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
-class MealPlannerScreen extends StatelessWidget {
+class MealPlannerScreen extends StatefulWidget {
+  @override
+  _MealPlannerScreenState createState() => _MealPlannerScreenState();
+}
+
+class _MealPlannerScreenState extends State<MealPlannerScreen> {
+  int _selectedIndex = 1; // Assuming Meal Planner is at index 1
+  Map<String, int> ingredientQuantities = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? mealPlannerData = prefs.getString('mealPlannerData');
+    setState(() {
+      ingredientQuantities = mealPlannerData != null
+          ? Map<String, int>.from(json.decode(mealPlannerData))
+          : {};
+    });
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    switch (index) {
+      case 0:
+        Navigator.pushNamed(context, '/home');
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/mealplanner');
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/grocerylist');
+        break;
+    // Add more cases as needed
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Meal Planner'),
+        title: const Text('Meal Planner'),
       ),
-      body: Center(
-        child: Text('Meal Planner Screen'),
+      body: ListView.builder(
+        itemCount: ingredientQuantities.keys.length,
+        itemBuilder: (context, index) {
+          String ingredient = ingredientQuantities.keys.elementAt(index);
+          int quantity = ingredientQuantities[ingredient]!;
+          return ListTile(
+            title: Text('$ingredient x $quantity'),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blue, // Background color of the bottom navigation bar
-        selectedItemColor: Colors.black, // Color of the selected item
-        unselectedItemColor: Colors.black, // Color of the unselected items
-        currentIndex: 2, // Set the current index for Meal Planner
-        onTap: (index) {
-          // Handle navigation when a bottom navigation item is tapped
-          switch (index) {
-            case 0:
-              Navigator.pushNamed(context, '/'); // Navigate to HomeScreen
-              break;
-            case 1:
-              Navigator.pushNamed(context, '/grocerylist'); // Navigate to GroceryListScreen
-              break;
-            case 3:
-              Navigator.pushNamed(context, '/recipes'); // Navigate to RecipeListScreen
-              break;
-          }
-        },
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Grocery List',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
             label: 'Meal Planner',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Recipes',
+            icon: Icon(Icons.shopping_cart),
+            label: 'Grocery',
           ),
         ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }

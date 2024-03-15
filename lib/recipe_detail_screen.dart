@@ -12,40 +12,55 @@ class RecipeDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(recipe.title),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(recipe.imageUrl),
-          Text('Ingredients:'),
-          Column(
-            children: recipe.ingredients
-                .map((ingredient) => Text('- $ingredient'))
-                .toList(),
+      body: Scrollbar(
+        isAlwaysShown: true,
+        interactive: true, // Enable interactive scrollbar
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(
+                recipe.imageUrl,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 200.0,
+              ),
+              SizedBox(height: 20),
+              Text('Ingredients:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Column(
+                children: recipe.ingredients
+                    .map((ingredient) => Text('- $ingredient'))
+                    .toList(),
+              ),
+              SizedBox(height: 20),
+              Text('Steps:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Column(
+                children: recipe.steps
+                    .asMap()
+                    .entries
+                    .map((step) => ListTile(
+                  leading: CircleAvatar(child: Text('${step.key + 1}')),
+                  title: Text(step.value),
+                ))
+                    .toList(),
+              ),
+              SizedBox(height: 20),
+              Text('Reviews:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Column(
+                children: recipe.reviews
+                    .map((review) => Text('- $review'))
+                    .toList(),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Back to Recipes'),
+              ),
+            ],
           ),
-          Text('Steps:'),
-          Column(
-            children: recipe.steps
-                .asMap()
-                .entries
-                .map((step) => ListTile(
-              leading: CircleAvatar(child: Text('${step.key + 1}')),
-              title: Text(step.value),
-            ))
-                .toList(),
-          ),
-          Text('Reviews:'),
-          Column(
-            children: recipe.reviews
-                .map((review) => Text('- $review'))
-                .toList(),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('Back to Recipes'),
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Recipe {
   final String title;
   final String imageUrl;
@@ -14,19 +16,76 @@ class Recipe {
   });
 }
 
-List<Recipe> dummyRecipes = [
+final List<Recipe> dummyRecipes = [
   Recipe(
-    title: 'Spaghetti Carbonara',
-    imageUrl: 'https://via.placeholder.com/300',
-    ingredients: ['Spaghetti', 'Eggs', 'Bacon', 'Parmesan cheese'],
-    steps: [
-      'Cook spaghetti according to package instructions.',
-      'In a separate pan, fry bacon until crispy.',
-      'In a bowl, whisk eggs and mix in grated parmesan cheese.',
-      'Combine cooked spaghetti with bacon, then stir in egg mixture.',
-      'Serve hot and enjoy!'
-    ],
-    reviews: ['Delicious!', 'Easy to make.', 'Family favorite.'],
+    title: 'Chicken Tikka Masala',
+    imageUrl: 'assets/ChickenTikkaMasala.png',
+    ingredients: ['Chicken', 'Yogurt', 'Tomato Sauce', 'Spices', 'Cream'],
+    steps: ['Marinate chicken', 'Grill or bake', 'Simmer in tomato sauce with cream'],
+    reviews: ['Rich and flavorful!', 'Absolutely delicious!'],
   ),
-  // Add more dummy recipes here...
+  Recipe(
+    title: 'Pasta Primavera',
+    imageUrl: 'assets/PastaPrimavera.png',
+    ingredients: ['Pasta', 'Assorted Vegetables', 'Olive Oil', 'Garlic', 'Parmesan Cheese'],
+    steps: ['Cook pasta', 'Sauté vegetables with garlic in olive oil', 'Toss with pasta and cheese'],
+    reviews: ['Fresh and tasty!', 'Love the mix of veggies!'],
+  ),
+  // Add more recipes here
+  Recipe(
+    title: 'Beef Tacos',
+    imageUrl: 'assets/BeefTacos.png',
+    ingredients: ['Ground Beef', 'Taco Seasoning', 'Tortillas', 'Lettuce', 'Tomato', 'Cheese', 'Salsa', 'Sour Cream'],
+    steps: ['Cook beef with taco seasoning', 'Assemble tacos with desired toppings'],
+    reviews: ['So satisfying!', 'Great for taco night!'],
+  ),
+  Recipe(
+    title: 'Caesar Salad',
+    imageUrl: 'assets/CaesarSalad.png',
+    ingredients: ['Romaine Lettuce', 'Caesar Dressing', 'Croutons', 'Parmesan Cheese'],
+    steps: ['Toss lettuce with dressing', 'Top with croutons and cheese'],
+    reviews: ['Classic and delicious!', 'Perfect light meal!'],
+  ),
+  Recipe(
+    title: 'Sushi Rolls',
+    imageUrl: 'assets/SushiRolls.png',
+    ingredients: ['Sushi Rice', 'Nori Seaweed', 'Assorted Fish', 'Vegetables', 'Soy Sauce', 'Wasabi', 'Pickled Ginger'],
+    steps: ['Spread rice on nori', 'Add fillings, roll tightly', 'Slice and serve with soy sauce, wasabi, and pickled ginger'],
+    reviews: ['Homemade sushi is the best!', 'Delicious and fresh!'],
+  ),
+  Recipe(
+    title: 'Beef Stir Fry',
+    imageUrl: 'assets/BeefStirFry.png',
+    ingredients: ['Beef Strips', 'Bell Peppers', 'Broccoli', 'Carrots', 'Soy Sauce', 'Garlic', 'Ginger', 'Rice'],
+    steps: ['Sear beef', 'Stir-fry vegetables', 'Add sauce, serve over rice'],
+    reviews: ['Quick and flavorful!', 'Great weeknight dinner!'],
+  ),
+  Recipe(
+    title: 'Margherita Pizza',
+    imageUrl: 'assets/MargheritaPizza.png',
+    ingredients: ['Pizza Dough', 'Tomato Sauce', 'Fresh Mozzarella Cheese', 'Fresh Basil', 'Olive Oil'],
+    steps: ['Roll out dough', 'Top with sauce, cheese, and basil', 'Bake until golden and bubbly'],
+    reviews: ['Classic and tasty!', 'Best pizza ever!'],
+  ),
+  Recipe(
+    title: 'Chicken Caesar Salad Wraps',
+    imageUrl: 'assets/ChickenCaesarSaladWraps.png',
+    ingredients: ['Grilled Chicken Strips', 'Romaine Lettuce', 'Caesar Dressing', 'Parmesan Cheese', 'Tortillas'],
+    steps: ['Fill tortillas with chicken, lettuce, dressing, and cheese', 'Roll up tightly'],
+    reviews: ['Perfect for a quick lunch!', 'Healthy and delicious!'],
+  ),
+  Recipe(
+    title: 'Vegetable Curry',
+    imageUrl: 'assets/VegetableCurry.png',
+    ingredients: ['Assorted Vegetables', 'Curry Sauce', 'Coconut Milk', 'Rice'],
+    steps: ['Cook vegetables in curry sauce and coconut milk', 'Serve over rice'],
+    reviews: ['So flavorful!', 'Love the variety of veggies!'],
+  ),
+  Recipe(
+    title: 'Chocolate Chip Cookies',
+    imageUrl: 'assets/ChocolateChipCookies.png',
+    ingredients: ['Flour', 'Butter', 'Sugar', 'Brown Sugar', 'Eggs', 'Vanilla Extract', 'Baking Soda', 'Chocolate Chips'],
+    steps: ['Cream butter and sugars', 'Add eggs and vanilla', 'Mix in dry ingredients and chocolate chips', 'Bake until golden'],
+    reviews: ['The best cookies ever!', 'So addictive!'],
+  ),
 ];

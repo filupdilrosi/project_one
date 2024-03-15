@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_one/recipe_detail_screen.dart';
 import '../models/recipe.dart';
-import 'recipe_detail_screen.dart';
 
 class RecipeListScreen extends StatelessWidget {
   @override
@@ -14,7 +14,12 @@ class RecipeListScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(dummyRecipes[index].title),
-            leading: Image.network(dummyRecipes[index].imageUrl),
+            leading: Image.asset(
+              dummyRecipes[index].imageUrl, // Use AssetImage instead of NetworkImage
+              fit: BoxFit.cover,
+              width: 80.0,
+              height: 80.0,
+            ),
             onTap: () {
               Navigator.push(
                 context,
