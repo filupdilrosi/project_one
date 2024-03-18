@@ -82,7 +82,26 @@ class _MealPlannerScreenState extends State<MealPlannerScreen> {
       print('Error loading ingredients: $e');
     }
   }
-
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    switch (index) {
+      case 0:
+        Navigator.pushNamed(context, '/');
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/grocerylist');
+        break;
+      case 2:
+      // Do nothing if already on Meal Planner screen
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/recipes');
+        break;
+    // Add more cases as needed
+    }
+  }
   @override
   Widget build(BuildContext context) {
     // Sort the keys alphabetically
