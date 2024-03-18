@@ -113,35 +113,6 @@ class _GroceryListScreenState extends State<GroceryListScreen> {
 
   final Map<String, int> ingredientQuantities = {};
 
-  void _saveIngredientsToFile() async {
-    try {
-      final directory = await getApplicationDocumentsDirectory();
-      final file = File('${directory.path}/ingredients.txt');
-
-      final buffer = StringBuffer();
-      ingredientQuantities.forEach((ingredient, quantity) {
-        buffer.writeln('$ingredient: $quantity');
-      });
-
-      // Open the file in append mode and write the new data
-      await file.writeAsString(buffer.toString(), mode: FileMode.append);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Ingredients saved to ingredients.txt'),
-          duration: Duration(seconds: 2),
-        ),
-      );
-    } catch (e) {
-      print('Error saving ingredients: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Failed to save ingredients'),
-          duration: Duration(seconds: 2),
-        ),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
